@@ -12,12 +12,11 @@
 {% endblock %}
 
 {% block main %}
-    <h3 class="page-title">{{ datajwc[0][1].decode('utf-8') }}</h3>
-    <p class="question-info">
-        <span>作者：<a href="{{datajwc[0][2].decode('utf-8')}}" target="_blank">哈工大教务处</a></span>
-    </p>
-    <hr>
     <p class="question-content">{{ datajwc[0][3].decode('utf-8')|safe }}</p>
+	<hr>
+	<p style="font-size:20px; font-family:'宋体';text-align:right">
+        <span>作者：<a href="{{datajwc[0][2].decode('utf-8')}}" target="_blank">哈工大教务处</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </p>
     <hr>
     <div class="praise">
         <span id="praise"><img src="{{ url_for('static',filename='images/zan.png') }}" id="praise-img" /></span>
@@ -330,29 +329,4 @@
 		});
 	})
     </script>
-{% endblock %}
-{% block bottom %}
-	<!-- 最底下的声明 -->
-	<br>
-	<br>
-	<footer class="mod-footer text-center">
-		<div class="footer-box">
-			<div class="inner-box">
-				<a href="{{url_for('informationandfeedback',table='AboutUs')}}">关于我们</a>
-					<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Contact')}}">联系方式</a>
-					<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Suggestion')}}">意见反馈</a>
-                	<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Donate')}}">捐赠我们</a>
-                	<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Statement')}}">免责声明</a>
-			</div>
-            <label style="font-family:'宋体'; color:gray ;font-size:13px">©2017 Software Engineering, School of Computer Science and Technology, Harbin Institute of Technology | Designed by UTNW</label>
-		</div>
-	</footer>
-
-{% endblock %}
-{% block other %}
-<a id="scrollTop" href="javacript:void(0);" title="返回顶部" style="display: inline;"></a>
 {% endblock %}

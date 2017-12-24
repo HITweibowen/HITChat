@@ -293,7 +293,7 @@
                           <div class="user-info1">
                               <img src="{{ url_for('static',filename='images/logo.png') }}"
                                    alt="" class="avatar">
-                              <span class="username"> <a href="{{url_for('showbasicmessage', msgid=answer2.author.id )}}" target="_blank"><span style="color: red">{{ answer2.author.username }}</span></a>&nbsp;&nbsp;回复&nbsp;&nbsp;<span style="color: red">{{ answer.author.username }}：&nbsp;</span></span>
+                              <span class="username"> <a href="{{url_for('showbasicmessage', msgid=answer2.author.id )}}" target="_blank"><span style="color: red">{{ answer2.author.username }}&nbsp;&nbsp;</span></a>回复&nbsp;&nbsp;<span style="color: red">{{ answer.author.username }}：&nbsp;</span></span>
                               <span class="create-time">{{ answer2.create_time }}&nbsp;&nbsp;&nbsp;</span>
                               <span class="glyphicon glyphicon-thumbs-up"></span>
                           </div>
@@ -345,29 +345,4 @@
         }
         document.getElementById({{ question.id }}).innerHTML=localStorage.pagecount;
     </script>
-{% endblock %}
-{% block bottom %}
-	<!-- 最底下的声明 -->
-	<br>
-	<br>
-	<footer class="mod-footer text-center">
-		<div class="footer-box">
-			<div class="inner-box">
-				<a href="{{url_for('informationandfeedback',table='AboutUs')}}">关于我们</a>
-					<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Contact')}}">联系方式</a>
-					<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Suggestion')}}">意见反馈</a>
-                	<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Donate')}}">捐赠我们</a>
-                	<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Statement')}}">免责声明</a>
-			</div>
-			<label style="font-family:'宋体'; color:gray ;font-size:13px">©2017 Software Engineering, School of Computer Science and Technology, Harbin Institute of Technology | Designed by UTNW</label>
-		</div>
-	</footer>
-
-{% endblock %}
-{% block other %}
-<a id="scrollTop" href="javacript:void(0);" title="返回顶部" style="display: inline;"></a>
 {% endblock %}

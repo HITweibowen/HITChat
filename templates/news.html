@@ -115,8 +115,8 @@
       <div class="hover ehover13">
         <img class="img-responsive" src="{{ url_for('static',filename='images/p4.jpg') }}" alt="图片加载中...">
         <div class="overlay">
-            <a href="http://jwc.hit.edu.cn/" target="_blank"><h2>教务处</h2></a>
-            <button class="info nullbutton" data-toggle="modal" data-target="#modal13"><a href="http://jwc.hit.edu.cn/2591/list.htm" target="_blank">最新消息</a>
+            <h2>教务处</h2>
+            <button class="info nullbutton" data-toggle="modal" data-target="#modal13">最新消息
             </button>
         </div>
     </div>
@@ -127,7 +127,7 @@
  <div style=" overflow-y:auto; overflow-x:auto; width:100%; height:580px;">
 
     <section class="color-9">
-<nav1 class="cl-effect-7">
+<nav1 class="cl-effect-20">
             
    {% for title in datajwc %}
        <a href="{{ url_for('jwcdetail',news_id=title[0]) }} "><span data-hover="点击查看详情" style="text-align:center">[{{ title[1].decode('utf-8') }}]</span></a>
@@ -148,8 +148,8 @@
        <div class="hover ehover14">
          <img class="img-responsive" src="{{ url_for('static',filename='images/cac.jpg') }}" alt="图片加载中...">
          <div class="overlay">
-             <a href="http://www.qq.com/" target="_blank"><h2>实时新闻</h2></a>
-             <button class="info nullbutton" data-toggle="modal" data-target="#modal14"><a href="http://news.qq.com/" target="_blank">最新消息</a></button>
+             <h2>实时新闻</h2>
+             <button class="info nullbutton" data-toggle="modal" data-target="#modal14">最新消息</button>
          </div>
      </div>
 
@@ -159,7 +159,7 @@
  <div style=" overflow-y:auto; overflow-x:auto; width:100%; height:580px;">
 
       <section class="color-5">
-		<nav1 class="cl-effect-7">
+		<nav1 class="cl-effect-19">
 			{% for title in datatencent %}
                <a href="{{ title[2] }} " target="_blank"><span>[{{ title[1].decode('utf-8') }}]</span></a>
            {% endfor %}
@@ -174,29 +174,4 @@
 </div></div>
 </div>
 
-{% endblock %}
-{% block bottom %}
-	<!-- 最底下的声明 -->
-	<br>
-	<br>
-	<footer class="mod-footer text-center">
-		<div class="footer-box">
-			<div class="inner-box">
-				<a href="{{url_for('informationandfeedback',table='AboutUs')}}">关于我们</a>
-					<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Contact')}}">联系方式</a>
-					<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Suggestion')}}">意见反馈</a>
-                	<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Donate')}}">捐赠我们</a>
-                	<span>&nbsp;|&nbsp;</span>
-				<a href="{{url_for('informationandfeedback',table='Statement')}}">免责声明</a>
-			</div>
-            <label style="font-family:'宋体'; color:gray ;font-size:13px">©2017 Software Engineering, School of Computer Science and Technology, Harbin Institute of Technology | Designed by UTNW</label>
-		</div>
-	</footer>
-
-{% endblock %}
-{% block other %}
-<a id="scrollTop" href="javacript:void(0);" title="返回顶部" style="display: inline;"></a>
 {% endblock %}

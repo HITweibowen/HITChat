@@ -19,7 +19,7 @@
     }
 </style>
 </head>
-<body background="{{ url_for('static',filename='images/userbg.jpg') }}" style="opacity: 0.90">
+<body background="{{ url_for('static',filename='images/userbg1.png') }}" style="opacity: 0.90">
 
 <ul class="nav nav-pills nav-stacked" style="margin-left:15%; margin-right:16%">
     <li class="active" style="font-size:20px; font-family:'楷体'"><a ><span class="glyphicon glyphicon-align-justify"></span> 个人中心</a></li>
@@ -115,29 +115,7 @@
                </div>
                 {% if currentid == usermsg.id %}
                     <a href="{{url_for('deletequestion', question_id=question.id)}}" class="btn btn-primary col-md-offset-3"><span class="glyphicon glyphicon-trash"></span></a>
-				{% endif %}
-				{% if currentid == 1 or currentid == 2 or currentid == 4 %}
-				<div class="form-select" style="float:right;width:102px">
-					<form role="form" id={{ question.id }} action="{{url_for('admintopic', question_id=question.id)}}" method="POST">
-					  <div class="form-group">
-					  <input type="hidden" name="questionid" value="{{ question.id }}">
-						<select class="form-control" name="label" onchange="if(confirm('是否更改？'))document.getElementById({{ question.id }}).submit()">
-						  <option>话题更改</option>
-						  <option>通知</option>
-						  <option>问答</option>
-						  <option>二手</option>
-						  <option>学习</option>
-						  <option>新闻</option>
-						  <option>旅游</option>
-						  <option>美食</option>
-						  <option>教育</option>
-						  <option>运动</option>
-						  <option>其他</option>
-						</select>
-					  </div>
-					</form>
-				</div>
-			{% endif %}
+                {% endif %}
            </li>
        {% endfor %}
    </ul>

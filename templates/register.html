@@ -17,11 +17,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript"
-        src="{{ url_for('static',filename='JS/jquery.js') }}"></script>
-    <script type="text/javascript">
-        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-    </script>
     <script type="text/javascript">
         var flag = {
             "email":false,
@@ -159,72 +154,8 @@
 
         })
     </script>
-	<script type="text/javascript">
-        $(function(){
-            //得到焦点
-            $("#txtPassword1").focus(function(){
-                $("#left_hand").animate({
-                    left: "150",
-                    top: " -38"
-                },{step: function(){
-                    if(parseInt($("#left_hand").css("left"))>140){
-                        $("#left_hand").attr("class","left_hand");
-                    }
-                }}, 2000);
-                $("#right_hand").animate({
-                    right: "-64",
-                    top: "-38px"
-                },{step: function(){
-                    if(parseInt($("#right_hand").css("right"))> -70){
-                        $("#right_hand").attr("class","right_hand");
-                    }
-                }}, 2000);
-            });
-            //失去焦点
-            $("#txtPassword1").blur(function(){
-                $("#left_hand").attr("class","initial_left_hand");
-                $("#left_hand").attr("style","left:100px;top:-12px;");
-                $("#right_hand").attr("class","initial_right_hand");
-                $("#right_hand").attr("style","right:-112px;top:-12px");
-            });
-        });
-               $(function(){
-            //得到焦点
-            $("#txtPassword2").focus(function(){
-                $("#left_hand").animate({
-                    left: "150",
-                    top: " -38"
-                },{step: function(){
-                    if(parseInt($("#left_hand").css("left"))>140){
-                        $("#left_hand").attr("class","left_hand");
-                    }
-                }}, 2000);
-                $("#right_hand").animate({
-                    right: "-64",
-                    top: "-38px"
-                },{step: function(){
-                    if(parseInt($("#right_hand").css("right"))> -70){
-                        $("#right_hand").attr("class","right_hand");
-                    }
-                }}, 2000);
-            });
-            //失去焦点
-            $("#txtPassword2").blur(function(){
-                $("#left_hand").attr("class","initial_left_hand");
-                $("#left_hand").attr("style","left:100px;top:-12px;");
-                $("#right_hand").attr("class","initial_right_hand");
-                $("#right_hand").attr("style","right:-112px;top:-12px");
-            });
-        });
-    </script>
 {% endblock %}
-{% block tou1 %}
-    <div style="width: 165px;height: 60px;position: absolute;margin-top:80px;margin-left: 55px">
-            <div class="tou"></div>
-            <div id="left_hand" class="initial_left_hand"></div>
-            <div id="right_hand" class="initial_right_hand"></div>
-    </div>
-{% endblock %}
+
 {% block main %}
     <h3 class="page-title">注册</h3>
     <form action="" method="POST" id="form">
@@ -246,49 +177,11 @@
                 <span id="password2.info" style="color:red;font-family:'宋体'"></span>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="yzm" placeholder="验证码" name="yzm" style="width:142px;float:left" required>&nbsp;&nbsp;
-                <input type="submit" id="btn" class="btn btn-primary btn-block" value="免费获取验证码" style="width:150px;float:left" onclick="settime(this)"/>
-            </div>
-            <br>
-            <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">立即注册</button>
             </div>
             <a href="{{ url_for('contactAdmin') }}">登录遇到问题？联系管理员</a>
         </div>
     </form>
-    <script type="text/javascript">
-        var countdown=60;
-        function settime(obj) {
-            if (countdown == 0) {
-                obj.removeAttribute("disabled");
-                obj.value = "免费获取验证码";
-                countdown = 60;
-                return;
-            } else {
-                obj.setAttribute("disabled", true);
-                obj.value = "重新发送(" + countdown + ")";
-                countdown--;
-            }
-            setTimeout(function () {
-                    settime(obj)
-                }
-                , 1000)
-        }
-   </script>
-   <script type=text/javascript>
-      $(function() {
-        $('input#btn').bind('click', function() {
-          $.getJSON($SCRIPT_ROOT + '/sendyzm', {
-              telephone: $('input[name="telephone"]').val(),
-              yzm: $('input[name="yzm"]').val()
-        }, function() {
-           $("#yzm").text('');
-//            '#frame'.location.reload(true);
-          });
-          return false;
-        });
-      });
-   </script>
 {% endblock %}
 {% block footer%}
     <div class="footer">

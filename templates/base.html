@@ -14,6 +14,7 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/base.css') }}">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
     {% block head %}{% endblock %}
     <style>
@@ -27,7 +28,7 @@
 	<div class="whole">
             <img src="{{ url_for('static',filename='images/hit1.jpg') }}" />
 	</div>
-<nav class="navbar navbar-default">
+    <nav class="navbar navbar-default">
           <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -45,23 +46,22 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                         <li class=" active "><a href="{{ url_for('index') }}">首页</a></li>
+                        <li class=" active "><a href="{{ url_for('index') }}">首页</a></li>
                         <li class="  "><a href="{{ url_for('question') }}">发布问答</a></li>
-						<li class="  "><a href="{{ url_for('topic', table='All') }}">话题</a></li>
-                        
                         <li class="  "><a href="{{ url_for('news') }}">新闻速递</a></li>
                         <li class="  "><a href="http://www.hitchat.cn:3000/" target="_blank">HITChat</a></li>
                         <li class="  "><a href="{{ url_for('aiml_detail') }}">聪明的一休哥</a></li>
-                        
-                        <li class="   "><a href="{{ url_for('label') }}">标签查询</a></li>
+                        <li class="  "><a href="{{ url_for('topic', table='All') }}">话题</a></li>
+                        <li class="   "><a href="#">标签查询</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">其他<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                           <li class="  "><a href="{{url_for('introduction')}}">视频</a></li>
-                                    <li class="  "><a href="{{url_for('informationandfeedback',table='Contact')}}">联系我们</a></li>
-                                    <li class="   "><a href="{{url_for('informationandfeedback',table='AboutUs')}}">关于我们</a></li>
-                                    <li class="  "><a href="{{url_for('informationandfeedback',table='Suggestion')}}">意见反馈</a></li>
-									<li class="  "><a href="{{url_for('informationandfeedback',table='Statement')}}">免责声明</a></li>
+                            <li class="  "><a href="http://mtg.jflyfox.com:80/park.html">公园</a></li>
+                            <li class="  "><a href="http://mtg.jflyfox.com:80/market.html">商场</a></li>
+                            <li class="  "><a href="http://mtg.jflyfox.com:80/house.html">房产</a></li>
+                            <li class="  "><a href="http://mtg.jflyfox.com:80/other.html">其他资讯</a></li>
+                            <li class="   "><a href="http://mtg.jflyfox.com:80/front/about">关于我们</a></li>
+                            <li class="  "><a href="http://mtg.jflyfox.com:80/advice.html">意见反馈</a></li>
                   </ul>
                 </li>
 
@@ -74,8 +74,19 @@
                 <button type="submit" class="btn btn-default">查找</button>
               </form>
               <ul class="nav navbar-nav navbar-right">
+                  {% if user %}
+                      <li><a href="{{ url_for('showbasicmessage', msgid=user.id) }}" target="_blank">
+                          {% if picid == '0' %}
+                                <img src="{{url_for('static', filename='images/logo.png')}}" alt="...图像加载失败" class="picsize"><br>
+                          {% else %}
+                                <img src="{{url_for('static', filename='images/'+ usermsg.telephone + picid +'.png')}}" alt="...图像加载失败" class="picsize"><br>
+                          {% endif %}
+                      </a></li>
+                      <li><a href="{{ url_for('logout') }}">注销</a></li>
+                  {% else %}
                       <li><a href="{{ url_for('login') }}">登录</a></li>
                       <li><a href="{{ url_for('register') }}">注册</a></li>
+                  {% endif %}
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
@@ -92,9 +103,6 @@
         });
     })
      </script>
-     <div class="tou1">
-        {% block tou1 %}{% endblock %}
-    </div>
     <div class="main">
         {% block main %}{% endblock %}
     </div>

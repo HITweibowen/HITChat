@@ -5,44 +5,8 @@
 {% block head%}
     <link rel="icon" href="{{ url_for('static',filename='images/logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/login_register.css') }}">
-    <script type="text/javascript">
-        $(function(){
-            //得到焦点
-            $("#password").focus(function(){
-                $("#left_hand").animate({
-                    left: "150",
-                    top: " -38"
-                },{step: function(){
-                    if(parseInt($("#left_hand").css("left"))>140){
-                        $("#left_hand").attr("class","left_hand");
-                    }
-                }}, 2000);
-                $("#right_hand").animate({
-                    right: "-64",
-                    top: "-38px"
-                },{step: function(){
-                    if(parseInt($("#right_hand").css("right"))> -70){
-                        $("#right_hand").attr("class","right_hand");
-                    }
-                }}, 2000);
-            });
-            //失去焦点
-            $("#password").blur(function(){
-                $("#left_hand").attr("class","initial_left_hand");
-                $("#left_hand").attr("style","left:100px;top:-12px;");
-                $("#right_hand").attr("class","initial_right_hand");
-                $("#right_hand").attr("style","right:-112px;top:-12px");
-            });
-        });
-    </script>
 {% endblock %}
-{% block tou1 %}
-    <div style="width: 165px;height: 60px;position: absolute;margin-top:80px;margin-left: 55px">
-            <div class="tou"></div>
-            <div id="left_hand" class="initial_left_hand"></div>
-            <div id="right_hand" class="initial_right_hand"></div>
-    </div>
-{% endblock %}
+
 {% block main%}
     <h3 class="page-title">登录</h3>
     <form action="" method="POST">
@@ -51,13 +15,12 @@
                 <input type="text" class="form-control" placeholder="手机号码" name="telephone">
             </div>
             <div class="form-group">
-                <input id = "password" type="password" class="form-control" placeholder="密码" name="password">
+                <input type="password" class="form-control" placeholder="密码" name="password">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block">登录</button>
             </div>
             <a href="{{ url_for('contactAdmin') }}">登录遇到问题？联系管理员</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url_for('resetpassword') }}">找回/修改密码？</a>
         </div>
     </form>
 
@@ -67,7 +30,7 @@
         <div id="pic">
             <a href="https://www.wjx.top/jq/17959538.aspx" target="_blank"><img src="{{ url_for('static',filename='images/welcome.jpg') }}"
              alt="" class="avatar" style="width:500px;height:300px"></a>
-            <span style="text-align: center">&nbsp;&nbsp;<a href="javascript:void(0);" id="closeBtn">x</a>&nbsp;&nbsp;</span>
+            <a href="javascript:void(0);" id="closeBtn">&nbsp;&nbsp;x&nbsp;&nbsp;</a>
         </div>
 </div>
     <script>
