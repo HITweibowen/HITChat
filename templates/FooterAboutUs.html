@@ -1,0 +1,73 @@
+{% extends 'FooterBase.html' %}
+    {% block content %}
+    <div class="container">
+    <!-- 主题分类栏 -->
+    <div class="col-md-3">
+        <div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<label>信息与反馈</label>
+				</h3>
+			</div>
+            <div class="list-group">
+                <a href="{{url_for('informationandfeedback', table='AboutUs')}}" class="list-group-item active">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                    关于我们
+                </a>
+                <a href="{{url_for('informationandfeedback', table='Contact')}}" class="list-group-item">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                    联系方式
+                </a>
+                <a href="{{url_for('informationandfeedback', table='Suggestion')}}" class="list-group-item">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                    意见反馈
+                </a>
+                <a href="{{url_for('informationandfeedback', table='Donate')}}" class="list-group-item">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                    捐赠我们
+                </a>
+                <a href="{{url_for('informationandfeedback', table='Statement')}}" class="list-group-item">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                     免责声明
+                </a>
+	        </div>
+        </div>
+    </div>
+
+    <!-- 主题内容 -->
+    <div class="row">
+    	<div class="col-md-8">
+		    <div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<label>信息与反馈/关于我们</label>
+					</h3>
+				</div>
+
+				<div class="panel-body">
+					<label>UTNW项目：</p><p><br/></p><p>
+
+名称：HITChat</p><p><br/></p><p>
+
+目标人群：哈工大全体在校师生</p><p><br/></p><p>
+背景：</p><p><br/></p><p>
+贴吧为人们提供了一个宽松的交流平台，人们可以在自由在上面对特定话题进行评论，也可以匿名发表自己的看法。</p><p><br/></p><p>
+今日哈工大目前发表的所有新闻均没有评论功能，师生渴望一个可以交流今日事件的平台。</p><p><br/></p><p>
+适应需求：</p><p><br/></p><p>
+能够使用学号注册一个唯一账号，设置密码登入；</p><p><br/></p><p>
+将不同类型的话题归类，并提供查询功能；</p><p><br/></p><p>
+用户可以发布话题，自由评论、匿名评论，删除自己的评论、话题，对话题评论点赞；</p><p><br/></p><p>
+用户可以设置个人中心（包含头像、密码、简介等）；</p><p><br/></p><p>
+面向今日哈工大：使用爬虫技术，将今日哈工大每天发布的新闻和政策集成到系统中，日常发布。</p><p><br/></p><p>
+
+系统核心价值：</p><p><br/></p><p>
+吹起哈尔滨工业大学信息大圈里的一阵风，让各类信息更快、更好被全校师生知晓，实现信息的价值</p><p><br/></p><p>
+架起哈尔滨工业大学校师生间的一座桥，保证学生与学生、学生与老师、学生与学校、老师与学校之间多一些了解与交流，加强校师生之间的羁绊</p><p><br/></p><p>
+建起哈尔滨工业大学评论的一个平台。这样对于各类新闻事件，大家可以各抒己见，百家争鸣。</label>
+				</div>
+			</div>
+	    </div>
+    </div>
+    </div>
+
+    {% endblock %}

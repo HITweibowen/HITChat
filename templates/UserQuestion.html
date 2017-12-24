@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户文章</title>
+    <link rel="icon" href="{{ url_for('static',filename='images/logo.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/UserQuestion.css') }}">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style type="text/css">
+    .size {
+        width:200px;
+        height:144px;
+        margin-left:14%;
+        margin-bottom:10px;
+    }
+    .size1 {
+        margin-left:13%;
+    }
+</style>
+</head>
+<body background="{{ url_for('static',filename='images/userbg.jpg') }}" style="opacity: 0.90">
+
+<ul class="nav nav-pills nav-stacked" style="margin-left:15%; margin-right:16%">
+    <li class="active" style="font-size:20px; font-family:'楷体'"><a ><span class="glyphicon glyphicon-align-justify"></span> 个人中心</a></li>
+</ul>
+
+<div class="line" style="margin-left:14%">
+ <div class="col-sm-9 col-md-3">
+    <div class="thumbnail" style="background: rgba(240,255,255,0.4)">
+      <div class="caption">
+
+<div class="list-group">
+    {% if picid == '0' %}
+        <img src="{{url_for('static', filename='images/logo.png')}}" alt="...图像加载失败" class="size"><br>
+    {% else %}
+        <img src="{{url_for('static', filename='images/userimage/'+ usermsg.telephone + picid +'.png')}}" alt="...图像加载失败" class="size"><br>
+    {% endif %}
+    <label class="size1" style="font-size:16px; font-family:'楷体'"><span class="glyphicon glyphicon-user"></span>用户:{{usermsg.username}}</label><br>
+    <label class="size1" style="font-size:16px; font-family:'楷体'"><span class="glyphicon glyphicon-heart"></span>座右铭:{{usermsg.motto}}</label><br><br>
+
+    <!--<a href="BasicMessage.html" class="list-group-item active">基本资料</a>-->
+    <!--<a href="Education.html" class="list-group-item">教育背景</a>-->
+    <!--<a href="Work.html" class="list-group-item">工作信息</a>-->
+    <!--<a href="HeadPortrait.html" class="list-group-item">头像设置</a>-->
+<ul class="nav nav-pills nav-stacked" style="background: rgba(240,255,255,0.4)">
+    <a href="{{ url_for('showbasicmessage', msgid=usermsg.id) }}" class="list-group-item"><span class="glyphicon glyphicon-send"></span> 基本资料</a>
+    <a href="{{ url_for('showpersonalitymessage', msgid=usermsg.id) }}" class="list-group-item"><span class="glyphicon glyphicon-headphones"></span> 个性资料</a>
+    <a href="{{ url_for('userquestion', msgid=usermsg.id) }}" class="list-group-item active"><span class="glyphicon glyphicon-book"></span> 发表的帖子</a>
+    <a href="{{ url_for('useranswer', msgid=usermsg.id) }}" class="list-group-item"><span class="glyphicon glyphicon-comment"></span> 发表的评论</a>
+</ul>
+<br><br><br>
+    {% if currentid == usermsg.id %}
+        <ul class="nav nav-pills nav-stacked">
+            <a href="{{ url_for('basicmessage') }}" class="list-group-item" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑资料</a
+        </ul>
+    {% endif %}
+
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="line" style="margin-right:1%">
+ <div class="col-sm-9 col-md-6">
+    <div class="thumbnail" style="background: rgba(240,255,255,0.4)">
+      <div class="caption">
+
+ <div class="list-group" style="height: 600px;overflow: auto">
+
+ <ul class="nav nav-pills nav-stacked" >
+ <li ><label class="list-group-item" style="position: absolute;width: 860px;background: rgba(240,255,255,1)"><span class="glyphicon glyphicon-book"></span> 发表的帖子</label></li>
+ </ul>
+
+    <ul class="question-list-group" style="margin-top: 30px;">
+       {% for question in userquestionmsg %}
+           <li>
+               <div class="avatar-group">
+                   <img src="{{ url_for('static',filename='images/logo.png') }}" alt="" class="avatar">
+               </div>
+               <div class="question-group">
+                   <p class="question-title"><a href="{{ url_for('detail',question_id=question.id) }}">&nbsp&nbsp{{ question.title }}</a></p>
+{#                 <p class="question-content">&nbsp&nbsp{{ question.content }}</p>#}
+                   <div class="question-info">
+                       <span class="question-author">&nbsp&nbsp作者：{{ question.author.username }}</span>
+                       <span class="question-time">时间：{{ question.create_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                       {% if question.label=='通知' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='Notification')}}">{{question.label}}</a></span>
+                       {% elif question.label=='教育' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='Education')}}">{{question.label}}</a></span>
+                       {% elif question.label=='美食' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='Food')}}">{{question.label}}</a></span>
+                       {% elif question.label=='交友' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='MakeFriends')}}">{{question.label}}</a></span>
+                       {% elif question.label=='新闻' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='News')}}">{{question.label}}</a></span>
+                       {% elif question.label=='问答' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='QuestionAnswer')}}">{{question.label}}</a></span>
+                       {% elif question.label=='二手' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='SecondHand')}}">{{question.label}}</a></span>
+                       {% elif question.label=='运动' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='Sport')}}">{{question.label}}</a></span>
+                       {% elif question.label=='学习' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='Study')}}">{{question.label}}</a></span>
+                       {% elif question.label=='旅游' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='Travel')}}">{{question.label}}</a></span>
+                       {% elif question.label=='其他' %}
+                            <span class="glyphicon glyphicon-tag"><a href="{{url_for('topic',table='Others')}}">{{question.label}}</a></span>
+                       {% endif %}
+                   </div>
+
+               </div>
+                {% if currentid == usermsg.id %}
+                    <a href="{{url_for('deletequestion', question_id=question.id)}}" class="btn btn-primary col-md-offset-3"><span class="glyphicon glyphicon-trash"></span></a>
+				{% endif %}
+				{% if currentid == 1 or currentid == 2 or currentid == 4 %}
+				<div class="form-select" style="float:right;width:102px">
+					<form role="form" id={{ question.id }} action="{{url_for('admintopic', question_id=question.id)}}" method="POST">
+					  <div class="form-group">
+					  <input type="hidden" name="questionid" value="{{ question.id }}">
+						<select class="form-control" name="label" onchange="if(confirm('是否更改？'))document.getElementById({{ question.id }}).submit()">
+						  <option>话题更改</option>
+						  <option>通知</option>
+						  <option>问答</option>
+						  <option>二手</option>
+						  <option>学习</option>
+						  <option>新闻</option>
+						  <option>旅游</option>
+						  <option>美食</option>
+						  <option>教育</option>
+						  <option>运动</option>
+						  <option>其他</option>
+						</select>
+					  </div>
+					</form>
+				</div>
+			{% endif %}
+           </li>
+       {% endfor %}
+   </ul>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
